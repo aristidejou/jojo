@@ -23,11 +23,12 @@ jobs:
           git config --global user.email "ajoutane@ttuhsc.edu"
           git config --global user.name "aristidejou"
 
-          ls
+         
           git init
           git add README.md
           git commit -m "first commit"
           git branch -M main
-          #git remote
+          ls -la
+          git remote
           #git remote add origin https://github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
           #git push -u origin master
