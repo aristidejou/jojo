@@ -19,22 +19,18 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.email "ajoutane@ttuhsc.edu"
-          git config --global user.name "aristidejou"
+          git config --local user.email "ajoutane@ttuhsc.edu"
+          git config --local user.name "aristidejou"
 
       - name: Create repository
         run: |
           curl -H "Authorization: token ${{ secrets.GITTOKEN }}" -d '{"name":"${{ github.event.inputs.repo_name }}"}' https://api.github.com/user/repos
 
-      - name: Clone repository
-        uses: actions/checkout@v3
-        with:
-          repository: aristidejou/${{ github.event.inputs.repo_name }}
-          ref: main
+     
 
       - name: Create README file
         run: |
-          cd your-repository-name
+          cd ${{ github.event.inputs.repo_name }}
           touch README.md
           git add README.md
           git commit -m "Initial commit"
