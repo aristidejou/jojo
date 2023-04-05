@@ -13,27 +13,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Checkout code
+      name: Create Repository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "ajoutane@ttuhsc.edu"
+          git config --global user.name "aristidejou"
 
       - name: Create repository
         run: |
-        
-          username="aristidejou"
-          token="${{ secrets.GITTOKEN }}"
-          url="https://api.github.com/user/${{ github.event.inputs.repo_name }}"
-          payload="{\"name\": \"${{ github.event.inputs.repo_name }}\", \"auto_init\": true, \"private\": false}"
-          response=$(curl -s -H "Authorization: token $token" -H "Accept: application/vnd.github.v3+json" -d "$payload" $url)
-          if [[ $(echo "$response" | grep -c "\"html_url\":") -eq 1 ]]; then
-            echo "Repository '$repo_name' created successfully!"
-          else
-            echo "Failed to create repository. Error message:"
-            echo "$response"
-            exit 1
-          fi
-          
-          
-      
+          curl -H "Authorization: token ${{ secrets.GITTOKEN }}" -d '{"name":"${{ github.event.inputs.repo_name }}"}' https://api.github.com/user/repos
+
+      - name: Clone repository
+        uses: actions/checkout@v2
+        with:
+          repository: aristidejou/${{ github.event.inputs.repo_name }}
+          ref: master
+
+      - name: Create README file
+        run: |
+          cd your-repository-name
+          touch README.md
+          git add README.md
+          git commit -m "Initial commit"
+          git push origin master
