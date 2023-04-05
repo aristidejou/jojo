@@ -27,7 +27,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.GITTOKEN }}" -d '{"name":"${{ github.event.inputs.repo_name }}"}' https://api.github.com/user/repos
 
       - name: Clone repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: aristidejou/${{ github.event.inputs.repo_name }}
           ref: master
