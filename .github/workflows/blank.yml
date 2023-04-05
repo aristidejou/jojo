@@ -26,8 +26,6 @@ jobs:
         run: |
           curl -H "Authorization: token ${{ secrets.GITTOKEN }}" -d '{"name":"${{ github.event.inputs.repo_name }}"}' https://api.github.com/user/repos
 
-     
-
       - name: Create README file
         run: |
           cd ${{ github.event.inputs.repo_name }}
