@@ -9,14 +9,6 @@ on:
       repo_name:
         description: 'new repository'
         required: true
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      name: Create Repository
-
-on:
-  workflow_dispatch:
 
 jobs:
   create-repository:
