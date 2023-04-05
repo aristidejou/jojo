@@ -30,7 +30,9 @@ jobs:
         run: |
           ls -la
           touch README.md
+          touch popo
           git add README.md
+          ls -la
           git commit -m "Initial commit"
           git branch -M main
           git remote add origin https://github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
