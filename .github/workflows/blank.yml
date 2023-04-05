@@ -31,4 +31,4 @@ jobs:
           ls -la
           git remote remove origin
           git remote add origin https://github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
-          #git push -u origin master
+          git push -u origin master
