@@ -16,19 +16,24 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |          
-         
-          echo ${{ github.event.inputs.repo_name }} >> README.md
-          git config --global user.email "ajoutane@ttuhsc.edu"
-          git config --global user.name "aristidejou"
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-         
-          git init
-          git add README.md
-          git commit -m "first commit"
-          git branch -M main
-          ls -la
-          git remote remove origin
-          git remote add origin https://aristidejou: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@github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
-          git push -u origin main
+      - name: Create repository
+        run: |
+          repo_name="my_new_repo"
+          username="your_username"
+          token="${{ secrets.GITTOKEN }}"
+          url="https://api.github.com/user/${{ github.event.inputs.repo_name }}"
+          payload="{\"name\": \"${{ github.event.inputs.repo_name }}\", \"auto_init\": true, \"private\": false}"
+          response=$(curl -s -H "Authorization: token $token" -H "Accept: application/vnd.github.v3+json" -d "$payload" $url)
+          if [[ $(echo "$response" | grep -c "\"html_url\":") -eq 1 ]]; then
+            echo "Repository '$repo_name' created successfully!"
+          else
+            echo "Failed to create repository. Error message:"
+            echo "$response"
+            exit 1
+          fi
+          
+          
+      
