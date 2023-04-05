@@ -17,7 +17,8 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a multi-line script
-        run: |        
+        run: |          
+         
           echo ${{ github.event.inputs.repo_name }} >> README.md
           git config --global user.email "ajoutane@ttuhsc.edu"
           git config --global user.name "aristidejou"
