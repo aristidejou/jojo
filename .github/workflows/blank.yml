@@ -19,6 +19,9 @@ jobs:
       - name: Run a multi-line script
         run: |        
           echo ${{ github.event.inputs.repo_name }} >> README.md
+          git config --global user.email "ajoutane@ttuhsc.edu"
+          git config --global user.name "aristidejou"
+
           ls
           git init
           git add README.md
