@@ -29,6 +29,6 @@ jobs:
           git commit -m "first commit"
           git branch -M main
           ls -la
-          git remote
+          git remote remove origin
           git remote add origin https://github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
           #git push -u origin master
