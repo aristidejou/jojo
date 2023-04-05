@@ -21,8 +21,8 @@ jobs:
 
       - name: Create repository
         run: |
-          repo_name="my_new_repo"
-          username="your_username"
+        
+          username="aristidejou"
           token="${{ secrets.GITTOKEN }}"
           url="https://api.github.com/user/${{ github.event.inputs.repo_name }}"
           payload="{\"name\": \"${{ github.event.inputs.repo_name }}\", \"auto_init\": true, \"private\": false}"
