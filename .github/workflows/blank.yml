@@ -17,6 +17,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        run: |        
+          echo $repo_name >> README.md
+          ls
+          git init
+          git add README.md
+          git commit -m "first commit"
+          git branch -M main
+          git remote add origin https://github.com/aristidejou/${{ repo_name }}.git
+          git push -u origin master
