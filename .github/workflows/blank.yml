@@ -28,7 +28,8 @@ jobs:
 
       - name: Create README file
         run: |
-          cd ${{ github.event.inputs.repo_name }}
+          ls -la
+          #cd ${{ github.event.inputs.repo_name }}
           touch README.md
           git add README.md
           git commit -m "Initial commit"
