@@ -18,11 +18,11 @@ jobs:
         run: echo Hello, world!
       - name: Run a multi-line script
         run: |        
-          echo $repo_name >> README.md
+          echo ${{ github.event.inputs.repo_name }} >> README.md
           ls
           git init
           git add README.md
           git commit -m "first commit"
           git branch -M main
-          git remote add origin https://github.com/aristidejou/${{ repo_name }}.git
+          git remote add origin https://github.com/aristidejou/${{ github.event.inputs.repo_name }}.git
           git push -u origin master
