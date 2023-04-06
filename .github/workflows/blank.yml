@@ -16,6 +16,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          github_token: ${{ secrets.GITTOKEN }}
 
       - name: Set up Git
         run: |
